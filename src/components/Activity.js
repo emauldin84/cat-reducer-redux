@@ -1,9 +1,7 @@
 import React from 'react'
-import {connect} from 'react-redux'
 
-import {catNap, catEat, catPlay} from '../redux/activity'
 
-const Activity = ({activity, catNap, catEat, catPlay}) => {
+const Activity = () => {
     return (
         <div>
             <h1>Cat reducer</h1>
@@ -23,20 +21,6 @@ const Activity = ({activity, catNap, catEat, catPlay}) => {
     )
 }
 
-const mapStateToProps = state => {
-    console.log(state.activities.activity)
-    // const { activity } = state
-    // return activity
-    return {
-        activity: state.activities.activity
-    }
-}
-const mapDispatchToProps = dispatch => {
-    return {
-        catEat: () => dispatch(catEat()),
-        catNap: () => dispatch(catNap()),
-        catPlay: () => dispatch(catPlay())
-    }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Activity)
+
+export default Activity
