@@ -4,11 +4,13 @@ import "./App.css";
 import Activity from './components/Activity'
 import { StateProvider } from './context/index'
 
+
 function App() {
 
   const initialState= {
     name: 'Koa',
-    activity: 'dogging'
+    activity: 'dogging',
+    isDarkMode: false
   }
 
   const reducer = (state, action) => {
@@ -23,13 +25,19 @@ function App() {
             ...state,
             name: action.newName
           }
+        case 'setMode':
+          return {
+            ...state,
+            isDarkMode: action.mode
+          }
       default:
         return state
     }
   }
 
+
   return (
-    <div className="App">
+    <div className='App'>
       <StateProvider value={useReducer(reducer, initialState)}>
         <Activity />
       </StateProvider>

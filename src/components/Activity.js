@@ -3,6 +3,7 @@ import StateContext from '../context/index'
 
 const Activity = () => {
     const [value, dispatch] = useContext(StateContext)
+    console.log('activity value', value)
 
     const handleClick = (e) => {
         dispatch({
@@ -11,14 +12,24 @@ const Activity = () => {
         })
     }
 
-    const handleChange = (e) =>{
+    const handleChange = (e) => {
         dispatch({
             type:'changeName',
             newName: e.target.value
         })
     }
+    
+    const handleModeChange = () => {
+        dispatch({
+            type:'setMode',
+            mode: !value.isDarkMode
+        })
+    }
+
+    let mode = value.isDarkMode ? 'light mode' : 'dark mode'
+    let style = value.isDarkMode ? 'ActivityContainer dark' : 'AActivityContainer'
     return (
-        <div>
+        <div className = {style}>
             <h1>The Cat-Dog activity monitor</h1>
             <p>{value.name} is {value.activity}</p>
             <p>
@@ -35,6 +46,7 @@ const Activity = () => {
                     <button onClick={handleClick} value='playing'>Play</button>
                 </li>
             </ul>
+            <button onClick={handleModeChange}>{mode}</button>
         </div>
     )
 }
